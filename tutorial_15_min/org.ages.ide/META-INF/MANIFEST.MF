@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.ages.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: org.ages.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.ages.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.ages,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-10
+Export-Package: org.ide.contentassist.antlr.internal,
+ org.ide.contentassist.antlr
+

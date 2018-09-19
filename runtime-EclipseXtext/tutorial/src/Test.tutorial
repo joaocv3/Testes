@@ -1,0 +1,18 @@
+datatype String
+datatype Int
+
+entity Aluno {
+	name: String
+	age: Int
+	matricula: Int
+}
+
+entity Escola {
+	name: String
+	address: String
+}
+
+entity Materia {
+	name: String
+	id: Int
+}

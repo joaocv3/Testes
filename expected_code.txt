@@ -1,0 +1,47 @@
+Dupla: 
+João Vieira
+Juan Collin	
+
+
+=============================== 
+
+datatype String
+datatype Int			
+
+entity Aluno {
+	name: String
+	age: Int
+	matricula: Int
+}
+
+entity Escola {
+	name: String
+	address: String
+}
+
+entity Materia {
+	name: String
+	id: Int
+}
+
+============================ GERA
+
+class Aluno
+  attr_accessor :name, :age, :matricula
+
+end
+
+class Escola
+  attr_reader :name, :address
+
+end
+
+class Materia
+  attr_reader :name, :id
+
+end
+
+
+============================= Referências: 
+
+https://mikeyhogarth.wordpress.com/2011/12/01/creating-your-own-attr_accessor-in-ruby/
