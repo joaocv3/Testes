@@ -13,6 +13,7 @@ import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
@@ -31,15 +32,46 @@ public class AGESGenerator extends AbstractGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     Iterable<Entity> _filter = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
     for (final Entity e : _filter) {
-      fsa.generateFile(
-        "oi", 
+      String _string = this._iQualifiedNameProvider.getFullyQualifiedName(e).toString("/");
+      String _plus = (_string + ".rb");
+      fsa.generateFile(_plus, 
         this.compile(e));
     }
   }
   
   public CharSequence compile(final Entity e) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("code");
+    {
+      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(e.eContainer());
+      boolean _tripleNotEquals = (_fullyQualifiedName != null);
+      if (_tripleNotEquals) {
+        _builder.append("package ");
+        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(e.eContainer());
+        _builder.append(_fullyQualifiedName_1);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("class ");
+    String _name = e.getName();
+    _builder.append(_name);
+    _builder.append(" ");
+    {
+      Entity _superType = e.getSuperType();
+      boolean _tripleNotEquals_1 = (_superType != null);
+      if (_tripleNotEquals_1) {
+        _builder.append("extends ");
+        QualifiedName _fullyQualifiedName_2 = this._iQualifiedNameProvider.getFullyQualifiedName(e.getSuperType());
+        _builder.append(_fullyQualifiedName_2);
+        _builder.append(" ");
+      }
+    }
+    _builder.append("{");
+    _builder.newLineIfNotEmpty();
+    _builder.append("   ");
+    _builder.newLine();
+    _builder.append("}");
     _builder.newLine();
     return _builder;
   }

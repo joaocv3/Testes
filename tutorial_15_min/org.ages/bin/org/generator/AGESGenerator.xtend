@@ -25,34 +25,26 @@ class AGESGenerator extends AbstractGenerator {
     override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
         for (e : resource.allContents.toIterable.filter(Entity)) {
             fsa.generateFile(
-                "oi",
+                e.fullyQualifiedName.toString("/") + ".rb",
                 e.compile)
         }
     }
 
     
-    def compile(Entity e) ''' 
-       code
-    '''
-				
-						
-				
-				
- /* 
+   
     def compile(Entity e) ''' 
         «IF e.eContainer.fullyQualifiedName !== null»
             package «e.eContainer.fullyQualifiedName»;
         «ENDIF»
         
-        public class «e.name» «IF e.superType !== null
+        class «e.name» «IF e.superType !== null
                 »extends «e.superType.fullyQualifiedName» «ENDIF»{
-            «FOR f : e.features»
-                «f.compile»
-            «ENDFOR»
+           
         }
     '''
  
-    def compile(Feature f) '''
+    /*
+     * def compile(Feature f) '''
         private «f.type.fullyQualifiedName» «f.name»;
         
         public «f.type.fullyQualifiedName» get«f.name.toFirstUpper»() {
@@ -62,5 +54,7 @@ class AGESGenerator extends AbstractGenerator {
         public void set«f.name.toFirstUpper»(«f.type.fullyQualifiedName» «f.name») {
             this.«f.name» = «f.name»;
         }
-    '''*/
+    '''
+    * */
+    
 }
