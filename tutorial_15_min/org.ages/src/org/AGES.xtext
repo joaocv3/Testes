@@ -1,6 +1,6 @@
 grammar org.AGES with org.eclipse.xtext.common.Terminals
 
-generate aGES "http://www.Tutorial.org"
+generate ages "http://www.Tutorial.org"
 
 Domainmodel:
     (elements+=AbstractElement)*;

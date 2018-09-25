@@ -1,4 +1,11 @@
+class HasAuthor  
+    
+# type String 	
+def author 
+    @author
+end
 
-public class HasAuthor {
-   
-}
+def author=(value)
+    @author = value
+end
+end

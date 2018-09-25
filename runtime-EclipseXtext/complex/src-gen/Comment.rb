@@ -1,4 +1,11 @@
+class Comment   << HasAuthor 
+    
+# type String 	
+def content 
+    @content
+end
 
-public class Comment extends HasAuthor {
-   
-}
+def content=(value)
+    @content = value
+end
+end
